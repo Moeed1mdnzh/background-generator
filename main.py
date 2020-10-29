@@ -1,4 +1,5 @@
 import pygame
+import cv2
 import random as r
 import Frontend
 
@@ -28,6 +29,12 @@ class main(generate):
 					self.pos = pygame.mouse.get_pos()
 					if self.pos[0] in range(258,461) and self.pos[1] in range(357,452):
 						self.Generate()
+			if pygame.key.get_pressed()[pygame.K_s]:
+				name = "BG_"+str(r.randint(1,100000000))+".jpeg"
+				pygame.image.save(self.board.board,name)
+				img = cv2.imread(name)
+				img = img[20:320,20:680]
+				cv2.imwrite(name,img)
 	def update(self):
 		pygame.display.update()
 	def delay(self):
